@@ -42,7 +42,7 @@ const Dashboard = () => {
         <>
         <NavBar setUserInput={setUserInput} />
         <div className="dashboard-container">
-            {Supes.map((supes) => {
+            {Supes ? (Supes.map((supes) => {
                 return (
                     <SuperItem
                         key={supes.id}
@@ -52,7 +52,10 @@ const Dashboard = () => {
                         thumbnail={supes.thumbnail.path}
                     />
                 );
-            })}
+            }))
+            :
+                (<div>No Result found</div>)
+            }
         </div>
 
         {/* {Supes && <img src={Supes[0].thumbnail.path} alt="dfqds"/>} */}

@@ -6,11 +6,10 @@ const ThumbnailSize = "/portrait_medium";
 const ImageFormat = ".jpg";
 
 function getWordStr(str) {
-    return str.split(/\s+/).slice(0, 10).join(" ");
+    return str.split(/\s+/).slice(0, 21).join(" ");
 }
 
 const SuperItem = (props) => {
-    console.log("PROPS" + props);
 
     let { id, name, description, thumbnail } = props;
 
@@ -18,12 +17,17 @@ const SuperItem = (props) => {
 
     description = getWordStr(description) + "...";
 
+    // ------------------------------------------------------------------- //
+
     return (
         <div className="SuperItemContainer">
             <img src={thumbnail} alt={name}/>
             <h3>{name}</h3>
             <p>{description.substring(0, 150)}</p>
-            <button>More Details...</button>
+
+            <button>
+                <Link to={`/Supes/${id}`}>More Details...</Link>
+            </button>
         </div>
     )
 }
