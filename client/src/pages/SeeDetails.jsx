@@ -10,3 +10,4 @@ const SeeDetails = () => {
 
 export default SeeDetails
 
+    
