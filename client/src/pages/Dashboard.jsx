@@ -17,17 +17,16 @@ import SuperItem from "../componenents/SuperItem";
 
 // ! FUNCTIONS :
 
-import FetchSupesNameStartWith from "../utils/FetchSupesNameStartWith";
+import { FetchSupesNameStartWith }  from "../utils/FetchRequests";
 
-const Dashboard = () => {
-    const [UserInput, setUserInput] = useState("");
-    const [Supes, setSupes] = useState([]);
+const Dashboard = ({ UserInput, setUserInput}) => {
+
+    const [Supes, setSupes] = useState();
 
     useEffect(() => {
         if (UserInput.trim() !== "") {
             FetchSupesNameStartWith(UserInput)
                 .then((res) => {
-                    console.log(res);
                     setSupes(res);
                 })
                 .catch((error) => {
@@ -45,11 +44,12 @@ const Dashboard = () => {
             {Supes ? (Supes.map((supes) => {
                 return (
                     <SuperItem
-                        key={supes.id}
+                        key={uuidv4()} // remettre avec l'id ou pas --> DOUTE
                         id={supes.id}
                         name={supes.name}
                         description={supes.description}
-                        thumbnail={supes.thumbnail.path}
+                        thumbnailPath={supes.thumbnail.path}
+                        thumbnailExtension={supes.thumbnail.extension}
                     />
                 );
             }))
@@ -57,10 +57,6 @@ const Dashboard = () => {
                 (<div>No Result found</div>)
             }
         </div>
-
-        {/* {Supes && <img src={Supes[0].thumbnail.path} alt="dfqds"/>} */}
-
-        {/* <div>Dashboard</div> */}
         </>
     );
 };

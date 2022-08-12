@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "./SuperItem.css";
 
 const ThumbnailSize = "/portrait_medium";
-const ImageFormat = ".jpg";
 
 function getWordStr(str) {
     return str.split(/\s+/).slice(0, 21).join(" ");
@@ -11,22 +10,23 @@ function getWordStr(str) {
 
 const SuperItem = (props) => {
 
-    let { id, name, description, thumbnail } = props;
+    let { id, name, description, thumbnailPath, thumbnailExtension } = props;
 
-    thumbnail = thumbnail + ThumbnailSize + ImageFormat;
+    thumbnailPath = thumbnailPath + ThumbnailSize + "." + thumbnailExtension;
 
     description = getWordStr(description) + "...";
+
 
     // ------------------------------------------------------------------- //
 
     return (
         <div className="SuperItemContainer">
-            <img src={thumbnail} alt={name}/>
+            <img src={thumbnailPath} alt={name}/>
             <h3>{name}</h3>
             <p>{description.substring(0, 150)}</p>
 
             <button>
-                <Link to={`/Supes/${id}`}>More Details...</Link>
+                <Link to={`/${id}`}>More Details...</Link>
             </button>
         </div>
     )

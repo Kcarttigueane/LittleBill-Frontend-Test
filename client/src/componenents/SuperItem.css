@@ -22,6 +22,7 @@
     grid-row-start: 1;
     grid-row-end: 4;
     margin: auto auto;
+    border-radius: 10px;
 }
 
 .SuperItemContainer h3 {

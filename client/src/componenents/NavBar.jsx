@@ -1,11 +1,14 @@
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import "./NavBar.css"
 
 // MARVEL LOGO :
 import Logo from "../images/Marvel_Logo.png"
 
 const NavBar = ({ setUserInput }) => {
+    let navigate = useNavigate();
 
     const [searchBarInput, setSearchBarInput] = useState("");
 
@@ -17,6 +20,7 @@ const NavBar = ({ setUserInput }) => {
         }
         setUserInput(searchBarInput);
         setSearchBarInput("");
+        navigate("/"); // ! Mauvaise facon de faire
     }
 
     return (
