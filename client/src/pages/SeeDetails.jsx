@@ -13,7 +13,7 @@ import ComicsDetail from "../componenents/ComicsDetail";
 
 // ! REQUEST FUNCTIONS :
 
-import { FetchSupeById } from "../utils/FetchRequests";
+import { FetchSupeById, FetchCharacterSeriesInfos } from "../utils/FetchRequests";
 
 // ! CSS :
 
@@ -27,10 +27,8 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
 
     let id = useParams().HeroId;
 
-    console.log("ID" + id);
-
     const [ SupeDetails, setSupeDetails ] = useState();
-
+    const [ SupeSeriesDetails, setSupeSeriesDetails ] = useState();
 
     useEffect(() => {
         FetchSupeById(id)
@@ -41,8 +39,17 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
             .catch((error) => {
                 console.log(error.message);
             });
-        }, [id]);
+    }, [id]);
 
+    useEffect(() => {
+        FetchCharacterSeriesInfos(id)
+            .then((res) => {
+                setSupeSeriesDetails(res);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }, [SupeDetails]);
 
     // ---------------------------------------------------------------------- //
 
@@ -65,11 +72,16 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
                             </div>
 							<div className="SeriesContainer">
 								<h2>Latest Series</h2>
-								{SupeDetails[0].series.items.map(item => (
-									<ul>
-										<li>{item.name}</li>
-									</ul>
-								))}
+                                {SupeSeriesDetails?.map(element => {
+                                    return ( // Don't understand why return (stackOverflow)
+                                        <ul key={element.id}>
+                                            <li>
+                                                {element.title}
+                                                {element.rating && <span style={{ marginLeft:"25px", textDecoration:"underline"}}>Rating : {element.rating}</span>}
+                                            </li>
+                                        </ul>
+                                    )
+                                })}
 								{SupeDetails[0].series.items.length === 0 ? (<li>No series available</li>) : (<p></p>)}
 							</div>
                         </>
