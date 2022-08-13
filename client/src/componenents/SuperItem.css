@@ -50,11 +50,6 @@
  */
 
 
-h1,
-h2 {
-  font-family: 'Permanent Marker', sans-serif;
-}
-
 .Card {
     margin: 20px;
     height: 400px;
@@ -116,3 +111,4 @@ h2 {
     filter: brightness(1.2) saturate(110%);
     transition: transform 0.2s, box-shadow 0.2s;
 }
+

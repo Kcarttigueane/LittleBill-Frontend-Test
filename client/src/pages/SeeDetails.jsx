@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 
 // ! REACT ROUTER :
 
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+// import ReactPaginate from 'react-paginate';
 
 // ! COMPONENTS :
 
 import NavBar from "../componenents/NavBar";
-import ComicsDetail from "../componenents/ComicsDetail";
 
 // ! REQUEST FUNCTIONS :
 
@@ -82,7 +83,7 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
 
                             <div className="ComicsContainer">  {/*{ITEM 3 (grid)}*/}
                                 <h2>Latest Comics</h2>
-                                {SupeComicsDetails ? (
+                                {SupeComicsDetails &&  (
                                     SupeComicsDetails.map((element) => {
                                         return (
                                             <ul key={element.id}>
@@ -96,12 +97,13 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
                                             </ul>
                                         )
                                     })
-                                ) : (<p>No series available</p>)}
+                                )}
+                                {(!SupeComicsDetails || SupeComicsDetails.length === 0) && (<p>No Comics available</p>)}
                             </div>
 
 							<div className="SeriesContainer">
 								<h2>Latest Series</h2>
-                                {SupeSeriesDetails ? (
+                                {SupeSeriesDetails && (
                                     SupeSeriesDetails.map((element) => {
                                         return (
                                             <ul key={element.id}>
@@ -112,9 +114,8 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
                                             </ul>
                                         )
                                     })
-                                )
-                                :
-                                (<p>No series available</p>)}
+                                )}
+                                {(!SupeSeriesDetails || SupeSeriesDetails.length === 0) && (<p>No Series available</p>)}
                             </div>
                         </>
                     ) : (

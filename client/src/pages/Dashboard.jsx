@@ -3,10 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 // ! HOOKS :
 
 import { useState, useEffect } from "react";
+import ReactPaginate from 'react-paginate';
 
 // ! CSS :
 
 import "./Dashboard.css";
+import "../componenents/Pagination.css";
 
 // ! COMPONENTS :
 
@@ -35,29 +37,69 @@ const Dashboard = ({ UserInput, setUserInput}) => {
     }, [UserInput]);
 
 
+    const [currentItems, setCurrentItems] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
+
+    const itemsPerPage = 8;
+
+    useEffect(() => {
+        if (Supes) {
+            const endOffset = itemOffset + itemsPerPage;
+            console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+            setCurrentItems(Supes.slice(itemOffset, endOffset));
+            setPageCount(Math.ceil(Supes.length / itemsPerPage));
+        }
+    }, [itemOffset, itemsPerPage, Supes]);
+
+    const handlePageClick = (event) => {
+        if (Supes) {
+            const newOffset = (event.selected * itemsPerPage) % Supes.length;
+            console.log(
+            `User requested page number ${event.selected}, which is offset ${newOffset}`
+            );
+            setItemOffset(newOffset);
+        }
+    };
+
     return (
         <>
-        <NavBar setUserInput={setUserInput} />
-        <div className="dashboard-container">
-            {Supes ? (Supes.map((supes) => {
-                return (
-                    <SuperItem
-                        key={uuidv4()} // remettre avec l'id ou pas --> DOUTE
-                        id={supes.id}
-                        name={supes.name}
-                        description={supes.description}
-                        thumbnailPath={supes.thumbnail.path}
-                        thumbnailExtension={supes.thumbnail.extension}
-                    />
-                );
-            }))
-            :
-                (<div>No Result found</div>)
-            }
-        </div>
+            <NavBar setUserInput={setUserInput} />
+            <div className="dashboard-container">
+                {currentItems && (currentItems.map((supes) => {
+                    return (
+                        <SuperItem
+                            key={uuidv4()} // remettre avec l'id ou pas --> DOUTE
+                            id={supes.id}
+                            name={supes.name}
+                            description={supes.description}
+                            thumbnailPath={supes.thumbnail.path}
+                            thumbnailExtension={supes.thumbnail.extension}
+                        />
+                    );
+                }))}
+                {currentItems.length === 0 && (<h1>No results found</h1>)}
+            </div>
+            {currentItems.length !== 0 &&
+                <>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={3}
+                    pageCount={pageCount}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+
+                    containerClassName="pagination"
+                    pageLinkClassName="pageNum"
+                    previousLinkClassName="pageNum"
+                    nextLinkClassName="pageNum"
+                    activeLinkClassName="activePageNum"
+                /></>}
         </>
     );
-};
+}
 
 export default Dashboard;
 
