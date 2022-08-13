@@ -75,4 +75,32 @@ const FetchCharacterSeriesInfos = async ( HeroId ) => {
     }
 };
 
-export { FetchSupesNameStartWith, FetchSupeById, FetchCharacterSeriesInfos };
+const FetchCharacterComicsInfos = async ( HeroId ) => {
+    let baseUrl = `${API_BASE_ENDPOINT}/v1/public/characters/${HeroId}/comics`;
+
+    let ts = Date.now().toString();
+    let hash = getHash(ts);
+
+    try {
+        const res = await axios.get(baseUrl, {
+            params: {
+                "apikey": `${publicApiKey}`,
+                "ts": ts,
+                "hash": hash
+            },
+        });
+        console.log(res.data.data.results);
+        return res.data.data.results;
+    } catch (error) {
+        console.log(error);
+        return;
+    }
+};
+
+
+export {
+    FetchSupesNameStartWith,
+    FetchSupeById,
+    FetchCharacterSeriesInfos,
+    FetchCharacterComicsInfos
+};

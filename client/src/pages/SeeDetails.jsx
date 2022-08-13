@@ -13,7 +13,7 @@ import ComicsDetail from "../componenents/ComicsDetail";
 
 // ! REQUEST FUNCTIONS :
 
-import { FetchSupeById, FetchCharacterSeriesInfos } from "../utils/FetchRequests";
+import { FetchSupeById, FetchCharacterSeriesInfos, FetchCharacterComicsInfos} from "../utils/FetchRequests";
 
 // ! CSS :
 
@@ -29,6 +29,7 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
 
     const [ SupeDetails, setSupeDetails ] = useState();
     const [ SupeSeriesDetails, setSupeSeriesDetails ] = useState();
+    const [ SupeComicsDetails, setSupeComicsDetails ] = useState();
 
     useEffect(() => {
         FetchSupeById(id)
@@ -49,7 +50,19 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
             .catch((error) => {
                 console.log(error.message);
             });
+        FetchCharacterComicsInfos(id)
+            .then((res) => {
+                setSupeComicsDetails(res);
+            })
+            .catch((error) => {
+                console.log(error.message);
+        });
     }, [SupeDetails]);
+
+    if (SupeComicsDetails) {
+        // console.log(SupeComicsDetails[0].dates[0].date);
+    }
+
 
     // ---------------------------------------------------------------------- //
 
@@ -61,15 +74,32 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
                     {SupeDetails ? (
                         <>
                             <img src={SupeDetails[0].thumbnail.path + ThumbnailStandardSize + "." + SupeDetails[0].thumbnail.extension} alt={"fchgvjhb"}/>  {/*{ITEM 1 (grid)}*/}
+
                             <div className="SupeDetails">  {/*{ITEM 2 (grid)}*/}
                                 <h1>{SupeDetails[0].name}</h1>
                                 {SupeDetails[0].description ? (<p>{SupeDetails[0].description}</p>) : (<p>No description available</p>)}
-                                <span>Latest Update : {SupeDetails[0].modified}</span>
+                                <span>Latest Update : {SupeDetails[0].modified.split('T')[0].split('-').reverse().join('-')}</span>
                             </div>
+
                             <div className="ComicsContainer">  {/*{ITEM 3 (grid)}*/}
                                 <h2>Latest Comics</h2>
-                                {/* <ComicsDetail ComicsName={SupeDetails[0].comics.items[0].name} ComicsPrice={SupeDetails[0].comics.items[0].prices[0].price} ComicsDate={SupeDetails[0].comics.items[0].dates[0].date}/> */}
+                                {SupeComicsDetails ? (
+                                    SupeComicsDetails.map((element) => {
+                                        return (
+                                            <ul key={element.id}>
+                                                <li>
+                                                    <h4>{element.title}</h4>
+                                                    <ul>
+                                                        {element.dates && <li>On sale Date : {element.dates[0].date.split('T')[0].split('-').reverse().join('-')}</li>} {/* en faire une fonction a part*/}
+                                                        {element.prices && <li>Prices : ${element.prices[0].price}</li>}
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        )
+                                    })
+                                ) : (<p>No series available</p>)}
                             </div>
+
 							<div className="SeriesContainer">
 								<h2>Latest Series</h2>
                                 {SupeSeriesDetails ? (
