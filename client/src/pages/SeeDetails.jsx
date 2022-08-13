@@ -21,7 +21,7 @@ import "./SeeDetails.css";
 
 // ! VARIABLES:
 
-const ThumbnailStandardSize = "/standard_fantastic";
+const ThumbnailStandardSize = "/detail";
 
 const SeeDetails = ({ UserInput, setUserInput}) => {
 
@@ -59,12 +59,11 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
         });
     }, [SupeDetails]);
 
-    if (SupeComicsDetails) {
-        // console.log(SupeComicsDetails[0].dates[0].date);
-    }
-
-
     // ---------------------------------------------------------------------- //
+
+    if (SupeDetails) {
+        console.log(SupeDetails[0].thumbnail.path + ThumbnailStandardSize + "." + SupeDetails[0].thumbnail.extension);
+    }
 
     return (
         <>
@@ -113,7 +112,9 @@ const SeeDetails = ({ UserInput, setUserInput}) => {
                                             </ul>
                                         )
                                     })
-                                ) : (<p>No series available</p>)}
+                                )
+                                :
+                                (<p>No series available</p>)}
                             </div>
                         </>
                     ) : (
