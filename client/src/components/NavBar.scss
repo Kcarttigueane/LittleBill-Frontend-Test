@@ -38,6 +38,7 @@
     }
 }
 
+
 .ratingSystemButton {
     font-family: "Permanent Marker", sans-serif;
     width: 10%;
@@ -58,4 +59,8 @@
         filter: brightness(1.2) saturate(110%);
         transition: transform 0.2s, box-shadow 0.2s;
     }
+}
+
+.HomeButton {
+    background-color: blue;
 }

@@ -10,9 +10,11 @@ import "./NavBar.scss";
 
 import Logo from "../images/Marvel_Logo.png";
 
+import InitialSupeData from "../utils/InitialSupeData.json";
+
 // * ====================================================================== *//
 
-const NavBar = ({ setUserInput, setIsSeeDetailsOn, setIsRatingSytemOn }) => {
+const NavBar = ({ setUserInput, setIsSeeDetailsOn, setIsRatingSytemOn, setSupes }) => {
     const [SearchBarInput, setSearchBarInput] = useState("");
 
     const submitFormHandler = (event) => {
@@ -31,9 +33,15 @@ const NavBar = ({ setUserInput, setIsSeeDetailsOn, setIsRatingSytemOn }) => {
         setIsRatingSytemOn(true);
     }
 
+    const homeButtonHandler = (event) => {
+        event.preventDefault();
+        setSupes(InitialSupeData);
+        setIsSeeDetailsOn(false);
+    };
+
     return (
         <div className="nav-bar-container">
-            <img src={Logo} alt="Marvel Logo"></img>
+            <img src={Logo} alt="Marvel Logo" onClick={homeButtonHandler}></img>
             <button onClick={RatingSystemButtonHandler} className="ratingSystemButton">Rating System Info</button>
             <form onSubmit={submitFormHandler}>
                 <input

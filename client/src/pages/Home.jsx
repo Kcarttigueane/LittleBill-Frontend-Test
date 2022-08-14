@@ -47,6 +47,7 @@ const Home = () => {
                 setUserInput={setUserInput}
                 setIsSeeDetailsOn={setIsSeeDetailsOn}
                 setIsRatingSytemOn={setIsRatingSytemOn}
+                setSupes={setSupes}
             />
             {isRatingSytemOn ? (
                 <RatingSystem setIsRatingSytemOn={setIsRatingSytemOn} />
