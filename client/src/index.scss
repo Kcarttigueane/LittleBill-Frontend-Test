@@ -47,3 +47,7 @@ p {
   font-family: 'Permanent Marker', sans-serif;
   margin: auto;
 }
+
+::selection {
+  color: orange;
+}
