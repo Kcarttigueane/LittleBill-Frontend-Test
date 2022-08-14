@@ -24,4 +24,10 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
     }
+
+    .activePageNum {
+        background-color: #00bcd4;
+        color: white;
+        box-shadow: 1px 1px 40px #00bcd4;
+    }
 }
