@@ -1,1 +1,0 @@
-# LittleBill-Frontend-Test

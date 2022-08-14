@@ -9,7 +9,7 @@ const getHash = (ts) => {
     return md5(ts + `${privateApiKey}` + `${publicApiKey}`).toString();
 };
 
-const FetchSupesNameStartWith = async ( value ) => {
+const FetchSupesNameStartWith = async (value) => {
     let baseUrl = `${API_BASE_ENDPOINT}/v1/public/characters`;
 
     let ts = Date.now().toString();
@@ -18,10 +18,10 @@ const FetchSupesNameStartWith = async ( value ) => {
     try {
         const res = await axios.get(baseUrl, {
             params: {
-                "nameStartsWith": `${value}`,
-                "apikey": `${publicApiKey}`,
-                "ts": ts,
-                "hash": hash
+                nameStartsWith: `${value}`,
+                apikey: `${publicApiKey}`,
+                ts: ts,
+                hash: hash,
             },
         });
         return res.data.data.results;
@@ -33,7 +33,7 @@ const FetchSupesNameStartWith = async ( value ) => {
 
 // ? find an optimal solution to avoid redundancy
 
-const FetchSupeById = async ( HeroId ) => {
+const FetchSupeById = async (HeroId) => {
     let baseUrl = `${API_BASE_ENDPOINT}/v1/public/characters/${HeroId}`;
 
     let ts = Date.now().toString();
@@ -42,9 +42,9 @@ const FetchSupeById = async ( HeroId ) => {
     try {
         const res = await axios.get(baseUrl, {
             params: {
-                "apikey": `${publicApiKey}`,
-                "ts": ts,
-                "hash": hash
+                apikey: `${publicApiKey}`,
+                ts: ts,
+                hash: hash,
             },
         });
         return res.data.data.results;
@@ -54,7 +54,7 @@ const FetchSupeById = async ( HeroId ) => {
     }
 };
 
-const FetchCharacterSeriesInfos = async ( HeroId ) => {
+const FetchCharacterSeriesInfos = async (HeroId) => {
     let baseUrl = `${API_BASE_ENDPOINT}/v1/public/characters/${HeroId}/series`;
 
     let ts = Date.now().toString();
@@ -63,9 +63,9 @@ const FetchCharacterSeriesInfos = async ( HeroId ) => {
     try {
         const res = await axios.get(baseUrl, {
             params: {
-                "apikey": `${publicApiKey}`,
-                "ts": ts,
-                "hash": hash
+                apikey: `${publicApiKey}`,
+                ts: ts,
+                hash: hash,
             },
         });
         return res.data.data.results;
@@ -75,7 +75,7 @@ const FetchCharacterSeriesInfos = async ( HeroId ) => {
     }
 };
 
-const FetchCharacterComicsInfos = async ( HeroId ) => {
+const FetchCharacterComicsInfos = async (HeroId) => {
     let baseUrl = `${API_BASE_ENDPOINT}/v1/public/characters/${HeroId}/comics`;
 
     let ts = Date.now().toString();
@@ -84,12 +84,11 @@ const FetchCharacterComicsInfos = async ( HeroId ) => {
     try {
         const res = await axios.get(baseUrl, {
             params: {
-                "apikey": `${publicApiKey}`,
-                "ts": ts,
-                "hash": hash
+                apikey: `${publicApiKey}`,
+                ts: ts,
+                hash: hash,
             },
         });
-        console.log(res.data.data.results);
         return res.data.data.results;
     } catch (error) {
         console.log(error);
@@ -97,10 +96,9 @@ const FetchCharacterComicsInfos = async ( HeroId ) => {
     }
 };
 
-
 export {
     FetchSupesNameStartWith,
     FetchSupeById,
     FetchCharacterSeriesInfos,
-    FetchCharacterComicsInfos
+    FetchCharacterComicsInfos,
 };

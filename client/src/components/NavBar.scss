@@ -1,0 +1,41 @@
+
+
+.nav-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 10vh;
+    background-color: #3c4146;
+
+    img {
+        width: 8%;
+        height: auto;
+        margin-left: 100px;
+    }
+    form {
+        input {
+            width: 250px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #3c4146;
+            padding-left: 10px;
+        }
+        button {
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #3c4146;
+            background-color: #178bff;
+            margin-right: 125px;
+        }
+        button:hover {
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #3c4146;
+            background-color: #004284;
+            margin-right: 125px;
+        }
+    }
+}

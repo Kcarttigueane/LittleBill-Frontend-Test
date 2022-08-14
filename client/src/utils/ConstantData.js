@@ -1,6 +1,1 @@
-
-// ! IMAGE SIZE :
-
-    // PORTRAIT :
-
-    
+export const ThumbnailFullSizePath = "/detail";
