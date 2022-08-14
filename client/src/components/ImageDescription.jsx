@@ -5,7 +5,7 @@ import { ThumbnailFullSizePath as ImageSize } from "../utils/ConstantData";
 const ImageDescription = ({ SupeDetails }) => {
     let imageUrl = SupeDetails[0].thumbnail.path + ImageSize + "." + SupeDetails[0].thumbnail.extension;
     let SupeName = SupeDetails[0].name;
-    let SupeDescription = SupeDetails[0].description;
+    let SupeDescription = <p>{SupeDetails[0].description}</p>;
     let NoDescription = (
         <p style={{ fontFamily: "Permanent Marker" }}>
             No Description available

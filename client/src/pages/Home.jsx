@@ -14,9 +14,13 @@ import "../style/pagination.scss";
 
 import { FetchSupesNameStartWith } from "../utils/FetchRequests";
 
+// ! INITIAL DATA :
+
+import InitialSupeData from "../utils/InitialSupeData.json";
+
 const Home = () => {
     const [UserInput, setUserInput] = useState("");
-    const [Supes, setSupes] = useState();
+    const [Supes, setSupes] = useState(InitialSupeData);
 
     const [IsSeeDetailsOn, setIsSeeDetailsOn] = useState(false);
     const [SelectedSupe, setSelectedSupe] = useState();
@@ -25,6 +29,7 @@ const Home = () => {
         if (UserInput.trim() !== "") {
             FetchSupesNameStartWith(UserInput)
                 .then((res) => {
+                    console.log(res);
                     setSupes(res);
                 })
                 .catch((error) => {
