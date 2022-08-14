@@ -45,7 +45,7 @@ const ListItems = ({ Supes, setIsSeeDetailsOn, setSelectedSupe }) => {
                     currentItems.map((supes) => {
                         return (
                             <SupeItem
-                                key={uuidv4()} // remettre avec l'id ou pas --> DOUTE
+                                key={uuidv4()}
                                 id={supes.id}
                                 name={supes.name}
                                 description={supes.description}

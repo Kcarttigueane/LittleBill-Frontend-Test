@@ -12,7 +12,7 @@ import Logo from "../images/Marvel_Logo.png";
 
 // * ====================================================================== *//
 
-const NavBar = ({ setUserInput, setIsSeeDetailsOn }) => {
+const NavBar = ({ setUserInput, setIsSeeDetailsOn, setIsRatingSytemOn }) => {
     const [SearchBarInput, setSearchBarInput] = useState("");
 
     const submitFormHandler = (event) => {
@@ -26,9 +26,15 @@ const NavBar = ({ setUserInput, setIsSeeDetailsOn }) => {
         setSearchBarInput("");
     };
 
+    const RatingSystemButtonHandler = (event) => {
+        event.preventDefault();
+        setIsRatingSytemOn(true);
+    }
+
     return (
         <div className="nav-bar-container">
             <img src={Logo} alt="Marvel Logo"></img>
+            <button onClick={RatingSystemButtonHandler} className="ratingSystemButton">Rating System Info</button>
             <form onSubmit={submitFormHandler}>
                 <input
                     type="text"

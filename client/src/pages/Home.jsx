@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import ListItems from "../components/ListItems";
 import SeeDetails from "../components/SeeDetails";
+import RatingSystem from "../components/RatingSystem";
 
 // ! CSS :
 
@@ -23,6 +24,7 @@ const Home = () => {
     const [Supes, setSupes] = useState(InitialSupeData);
 
     const [IsSeeDetailsOn, setIsSeeDetailsOn] = useState(false);
+    const [isRatingSytemOn, setIsRatingSytemOn] = useState(false);
     const [SelectedSupe, setSelectedSupe] = useState();
 
     useEffect(() => {
@@ -41,18 +43,28 @@ const Home = () => {
 
     return (
         <>
-            <NavBar setUserInput={setUserInput} setIsSeeDetailsOn={setIsSeeDetailsOn}/>
-            {!IsSeeDetailsOn ? (
-            <ListItems
-                Supes={Supes}
+            <NavBar
+                setUserInput={setUserInput}
                 setIsSeeDetailsOn={setIsSeeDetailsOn}
-                setSelectedSupe={setSelectedSupe}
+                setIsRatingSytemOn={setIsRatingSytemOn}
             />
+            {isRatingSytemOn ? (
+                <RatingSystem setIsRatingSytemOn={setIsRatingSytemOn} />
             ) : (
-                <SeeDetails
-                    HeroId={SelectedSupe}
-                    setIsSeeDetailsOn={setIsSeeDetailsOn}
-                />
+                <>
+                    {!IsSeeDetailsOn ? (
+                        <ListItems
+                            Supes={Supes}
+                            setIsSeeDetailsOn={setIsSeeDetailsOn}
+                            setSelectedSupe={setSelectedSupe}
+                        />
+                    ) : (
+                        <SeeDetails
+                            HeroId={SelectedSupe}
+                            setIsSeeDetailsOn={setIsSeeDetailsOn}
+                        />
+                    )}
+                </>
             )}
         </>
     );

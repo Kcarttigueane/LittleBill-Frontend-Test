@@ -1,5 +1,3 @@
-
-
 .nav-bar-container {
     display: flex;
     align-items: center;
@@ -37,5 +35,28 @@
             background-color: #004284;
             margin-right: 125px;
         }
+    }
+}
+
+.ratingSystemButton {
+    font-family: "Permanent Marker", sans-serif;
+
+    width: 10%;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    background-color: #454545;
+    margin-right: 30%;
+    padding: 10px;
+
+    box-shadow: 1px 1px 40px #00212d;
+    filter: brightness(1) saturate(90%);
+    transition: transform 0.6s, box-shadow 0.6s, filter 0.4s;
+
+    &:hover {
+        box-shadow: 1px 1px 40px #f9b916;
+        transform: scale(1.03);
+        filter: brightness(1.2) saturate(110%);
+        transition: transform 0.2s, box-shadow 0.2s;
     }
 }

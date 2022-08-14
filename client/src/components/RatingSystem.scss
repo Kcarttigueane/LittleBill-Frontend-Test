@@ -1,0 +1,31 @@
+
+.RatingSystemContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+    width: 60%;
+    min-height: 50px;
+
+    margin: auto;
+    margin-top: 10%;
+    padding: 30px;
+
+    border: 1px solid black;
+    border-radius: 25px;
+    color:black;
+
+    background-color: antiquewhite;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    button {
+        width: 50px;
+        height: 25px;
+        border-radius: 15px;
+    }
+}
