@@ -31,7 +31,6 @@ const Home = () => {
         if (UserInput.trim() !== "") {
             FetchSupesNameStartWith(UserInput)
                 .then((res) => {
-                    console.log(res);
                     setSupes(res);
                 })
                 .catch((error) => {
